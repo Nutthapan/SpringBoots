@@ -77,9 +77,23 @@ public class EmployeeRepositoryimpl implements EmployeeRepository {
     }
 
     @Override
-    public void deleteEmployee(Long id) {
+    public int updateEmployee(Long id, Employee employee) {
         StringBuilder sql = new StringBuilder();
-        sql.append("DELETE FROM employees WHERE EmployeeId = :id");
+        sql.append("UPDATE employees SET FirstName = :firstName, LastName = :lastName WHERE EmployeeId = :id");
+
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("id", id);
+        parameters.addValue("firstName", employee.getFirstName());
+        parameters.addValue("lastName", employee.getLastName());
+
+        return jdbcTemplate.update(sql.toString(), parameters);
+    }
+
+    @Override
+    public void deleteEmployee(Long id) {
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("DELETE FROM employees WHERE EmployeeId=:id");
         MapSqlParameterSource parameters = new MapSqlParameterSource();
         parameters.addValue("id", id);
 

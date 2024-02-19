@@ -13,5 +13,7 @@ public interface EmployeeRepository {
 
     Employee saveEmployee(Employee employee);
 
+    int updateEmployee(Long id, Employee employee);
+
     void deleteEmployee(Long id);
 }

@@ -35,8 +35,8 @@ public class EmployeeControllerImpl implements EmployeeController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
-        // Implement update logic if needed
-        return ResponseEntity.ok(employee);
+
+        return ResponseEntity.ok(employeeService.updateEmployee(id, employee));
     }
 
     @DeleteMapping("/{id}")
